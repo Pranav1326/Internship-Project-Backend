@@ -28,38 +28,29 @@ app.get("/", (req, res, next) => {
     next();
 });
 
-app.post('/register', (req, res) => {
-    const saltValue = 10;
-    bcrypt.hash(req.body.password, saltValue)
-      .then((hashedPassword) => {
-        // Creating a new user from user Schema.
-        const userData = new UserData({
-          email: req.body.email,
-          password: hashedPassword
-        });
-  
-        // Saving user into db.
-        userData.save().then((result) => {
-          res.status(201).send({
-            message: 'User created Successfully.',
-            result,
-          });
-        })
-        // Will show error if user's data is not able to save.
-        .catch((err) => {
-          res.status(500).send({
-            message: 'Error creating User.',
-            err,
-          });
-        });
-    })
-    // Will show error if given password is incorrect.
-    .catch((e) => {
-        res.status(500).send({
-        message: 'Password was not hashed.',
-        e
+app.post('/user-register', (req, res) => {
+  // Creating a new user's data from userData Schema.
+  const userData = new UserData({
+    username: req.body.username,
+    number: req.body.number,
+    email: req.body.email,
+    address: req.body.address
+  });
+
+  // Saving user into db.
+  userData.save().then((result) => {
+    res.status(201).send({
+      message: 'User created Successfully.',
+      result,
     });
+  })
+  // Will show error if user's data is not able to save.
+  .catch((err) => {
+    res.status(500).send({
+      message: 'Error creating User.',
+      err,
     });
+  });
 });
 
 app.post('/login', (req, res) => {
