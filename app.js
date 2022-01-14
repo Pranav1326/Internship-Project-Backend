@@ -11,6 +11,9 @@ dbConnect();
 // User model
 const User = require('./db/userModel');
 
+// User-data model
+const UserData = require('./db/userDataModel');
+
 // Auth route
 const auth = require('./auth');
 
@@ -30,13 +33,13 @@ app.post('/register', (req, res) => {
     bcrypt.hash(req.body.password, saltValue)
       .then((hashedPassword) => {
         // Creating a new user from user Schema.
-        const user = new User({
+        const userData = new UserData({
           email: req.body.email,
           password: hashedPassword
         });
   
         // Saving user into db.
-        user.save().then((result) => {
+        userData.save().then((result) => {
           res.status(201).send({
             message: 'User created Successfully.',
             result,
