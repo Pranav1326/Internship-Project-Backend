@@ -7,7 +7,7 @@ const UserDataSchema = new mongoose.Schema({
         unique: [true, "User Exist!"]
     },
     cellnumber: {
-        type: Number,
+        type: String,
         length: 10,
         required: [true, "Please provide mobile number!"]
     },
