@@ -32,7 +32,7 @@ app.post('/user-register', (req, res) => {
   // Creating a new user's data from userData Schema.
   const userData = new UserData({
     username: req.body.username,
-    cellnumber: req.body.number,
+    cellnumber: req.body.cellnumber,
     email: req.body.email,
     address: req.body.address
   });
