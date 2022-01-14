@@ -8,6 +8,7 @@ const UserDataSchema = new mongoose.Schema({
   },
   cellnumber: {
     type: Number,
+    min:10,
     required: [true, "Please provide mobile number!"],
   },
   email: {
