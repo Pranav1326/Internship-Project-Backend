@@ -16,6 +16,7 @@ const UserData = require('./db/userDataModel');
 
 // Auth route
 const auth = require('./auth');
+const { Mongoose } = require('mongoose');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -24,7 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res, next) => {
-    res.json({message: "This is response from the server."});
+    const userDataFromMongo = userData.find();
+  
+    res.json({userDataFromMongo});
     next();
 });
 
