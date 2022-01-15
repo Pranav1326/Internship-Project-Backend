@@ -112,10 +112,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.get("/auth-endpoint",auth, (req, res) => {
-    res.json({ message: "You are authorized to access me" });
-});
-
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
