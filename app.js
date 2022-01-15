@@ -26,12 +26,16 @@ const port = process.env.PORT || 3030;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/home", (req, res) => {
-  
+app.get("/home",auth, (req, res) => {
   userDataModel.find({},(err, result) => {
     res.status(200).send({users: result});
   });
+});
 
+app.delete(`/${req.params.id}`, (req, res) => {
+  userDataModel.findByIdAndRemove(req.params.id, (err) => {
+    console.log("Error deleting user: " + err);
+  });
 });
 
 app.post('/user-register', (req, res) => {
