@@ -16,19 +16,22 @@ const UserData = require('./db/userDataModel');
 
 // Auth route
 const auth = require('./auth');
-const { Mongoose } = require('mongoose');
+const { Mongoose, mongo } = require('mongoose');
+const userModel = require('./db/userModel');
+const userDataModel = require('./db/userDataModel');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", (req, res, next) => {
-    const userDataFromMongo = userData.find();
+app.get("/home", (req, res) => {
   
-    res.json({userDataFromMongo});
-    next();
+  userDataModel.find({},(err, result) => {
+    res.status(200).send({users: result});
+  });
+
 });
 
 app.post('/user-register', (req, res) => {
