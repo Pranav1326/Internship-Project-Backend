@@ -32,9 +32,14 @@ app.get("/home",auth, (req, res) => {
   });
 });
 
-app.delete(`/${req.params.id}`, (req, res) => {
-  userDataModel.findByIdAndRemove(req.params.id, (err) => {
-    console.log("Error deleting user: " + err);
+app.get("/delete/(:id)", (req, res) => {
+  userDataModel.findByIdAndRemove(req.params.id, (err, user) => {
+    if(err){
+      console.log("Error deleting user: " + err);
+    }
+    else{
+      res.send(user);
+    }
   });
 });
 
