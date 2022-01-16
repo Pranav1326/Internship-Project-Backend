@@ -28,7 +28,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/home", auth, (req, res) => {
   userDataModel.find({},(err, result) => {
-    res.status(200).send({users: result});
+    if(!err){
+      res.status(200).send({users: result});
+    }
+    else{
+      res.status(404).send("Error finding data: " + err);
+    }
   });
 });
 
