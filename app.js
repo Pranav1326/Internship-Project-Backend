@@ -26,7 +26,7 @@ const port = process.env.PORT || 3030;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/home", auth, (req, res) => {
+app.get("/home", (req, res) => {
   userDataModel.find({},(err, result) => {
     if(!err){
       res.status(200).send({users: result});
