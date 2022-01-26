@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const cors = require('cors');
 
 // DB
 const dbConnect = require("./db/dbConnect");
@@ -21,6 +22,7 @@ const userModel = require("./db/userModel");
 const userDataModel = require("./db/userDataModel");
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 3030;
 
 app.use(bodyParser.json());
