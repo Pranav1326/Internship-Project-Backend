@@ -122,12 +122,7 @@ app.post("/login", (req, res) => {
 
 // Curb Cores Error by adding a header here
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", [
-    "https://peaceful-ardinghelli-fc4397.netlify.app/",
-    "https://peaceful-ardinghelli-fc4397.netlify.app/login",
-    "https://peaceful-ardinghelli-fc4397.netlify.app/home",
-    "https://peaceful-ardinghelli-fc4397.netlify.app/register",
-  ]);
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
